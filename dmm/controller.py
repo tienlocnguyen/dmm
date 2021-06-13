@@ -63,13 +63,11 @@ class DMMControllerBase(abc.ABC):
 
     def notify_data(self, data: DMMData) -> None:
         for l in self.listeners:
-            # call on received data in new thread
-            threading.Thread(target=l.on_received_data(data)).start()
+            l.on_received_data(data)
 
     def notify_error(self, error_code: int) -> None:
         for l in self.listeners:
-            # call on error in new thread
-            threading.Thread(target=l.on_error(error_code)).start()
+            l.on_error(error_code)
 
     def recv(self) -> None:
         while self.is_running:
