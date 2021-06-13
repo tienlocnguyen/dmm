@@ -1,5 +1,5 @@
 name: Pull Request Check
-on: [push]
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
